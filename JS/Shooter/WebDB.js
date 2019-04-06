@@ -70,7 +70,8 @@ DB.Prepare = function()
 						"line_color": "rgba(255, 255, 255, 0.8)"
 
 					},
-					"spritesheet": "Empty"
+					"spritesheet": "Test",
+					"image": "Plane.png"
 
 				},
 				"actions":
@@ -384,12 +385,54 @@ DB.Prepare = function()
 		}
 ,
 "Sheets/Empty":
-		{
+{
 
-		    "frames": [],
-		    "animations": []
+	"frames": [],
+	"animations": []
 
-		}
+}
+,
+"Sheets/Test":
+{
+
+    "frames":
+    [
+
+        {
+
+            "box":
+            {
+
+                "x": 0,
+                "y": 0,
+                "width": 1024,
+                "height": 1024
+
+            },
+            "offset":
+            {
+
+                "x": 512,
+                "y": 512
+
+            },
+            "duration": 1000
+
+        }
+
+    ],
+    "animations":
+    [
+
+        [
+
+            0
+
+        ]
+
+    ]
+
+}
 
 	};
 

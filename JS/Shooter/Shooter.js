@@ -88,20 +88,6 @@ Shooter.prototype.Start = function()
 
     this.player.Hook();
 
-    for(actor in this.actor_master)
-    {
-
-        this.actor_master[actor].Hook();
-
-    }
-
-    for(pattern in this.pattern_master)
-    {
-
-        this.pattern_master[pattern].Hook();
-
-    }
-
     this.canvas.width = this.stage.PlayerArea().Width();
     this.canvas.height = this.stage.PlayerArea().Height();
 
@@ -154,14 +140,14 @@ Shooter.prototype.Update = function(delta)
 
 	}
 
-        this.stage.Update(this.player, delta);
+    this.stage.Update(this.player, delta);
 
 	//Read Killed Messages
 	var message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_KILLED, true, 0);
 	while(!message.IsEmpty())
 	{
 
-		//Process killed objects
+		//TODO: Process killed objects
 
 		message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_KILLED, true, 0);
 
@@ -256,6 +242,7 @@ Shooter.prototype.Render = function(delta)
 	for(var obj in this.objects)
 	{
 
+        this.objects[obj].Render(this.context);
 		this.objects[obj].DebugRender(this.context);
 
 	}

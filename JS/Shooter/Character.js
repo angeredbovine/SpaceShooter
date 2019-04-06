@@ -29,6 +29,14 @@ Character.prototype.Populate = function(json, proceed)
 Character.prototype.Update = function(delta)
 {
 
+	//TODO: Remove this and make animation controller
+	if(!this.spritesheet.Playing())
+	{
+
+		this.spritesheet.Promise(0, 0, true);
+
+	}
+
 	this.Unblock();
 
 	for(var i = 0; i < this.actions.length; i++)

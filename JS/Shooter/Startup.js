@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function()
 
 	json.sheets = [];
 	json.sheets[0] = "Sheets/Empty";
+	json.sheets[1] = "Sheets/Test";
 
 	game = new Shooter();
 	game.Initialize();

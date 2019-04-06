@@ -1,9 +1,10 @@
 const CONST_SPRITESHEET_EMPTY = -1;
 
-function FrameData(x, y, w, h, duration)
+function FrameData(x, y, w, h, oX, oY, duration)
 {
 
 	this.box = new Box(x, y, w, h);
+	this.offset = new Vector2(oX, oY);
 	this.duration = duration;
 
 }
@@ -15,10 +16,10 @@ FrameData.prototype.Duration = function()
 
 }
 
-FrameData.prototype.Box = function()
+FrameData.prototype.Data = function()
 {
 
-	return this.box;
+	return {"box": this.box, "offset": this.offset};
 
 }
 
@@ -42,7 +43,8 @@ Spritesheet.prototype.Populate = function(json, proceed)
 	{
 
 		var box = json.frames[i].box;
-		this.frames[i] = new FrameData(box.x, box.y, box.width, box.height, json.frames[i].duration);
+		var offset = json.frames[i].offset;
+		this.frames[i] = new FrameData(box.x, box.y, box.width, box.height, offset.x, offset.y, json.frames[i].duration);
 
 	}
 
@@ -79,19 +81,19 @@ Spritesheet.prototype.Play = function(animation, loop, start)
 
 }
 
-Spritesheet.prototype.Box = function(frame)
+Spritesheet.prototype.Data = function(frame)
 {
 
-	if(frame >= 0 || frame < this.frames.length)
+	if(frame >= 0 && frame < this.frames.length)
 	{
 
-		return this.frames[frame].Box();
+		return this.frames[frame].Data();
 
 	}
 
 	Logger.LogError("Attempting to access frame at invalid index " + frame);
 
-	return new Box();
+	return null;
 
 }
 
@@ -106,6 +108,13 @@ function SheetReference(sheet)
 	this.currentFrame = CONST_SPRITESHEET_EMPTY;
 
 	this.sheet = sheet;
+
+}
+
+SheetReference.prototype.Playing = function()
+{
+
+	return !(this.currentFrame == CONST_SPRITESHEET_EMPTY);
 
 }
 
@@ -166,5 +175,12 @@ SheetReference.prototype.Update = function(delta)
 		}
 
 	}
+
+}
+
+SheetReference.prototype.Data = function()
+{
+
+	return this.sheet.Data(this.currentFrame);
 
 }

@@ -199,6 +199,7 @@ GameObject.prototype.Hook = function()
 
 	this.spritesheet = new SheetReference(this.owner.GetSheetById(this.spritesheet));
 	this.image = this.owner.GetImageResourceById(this.image);
+
 }
 
 GameObject.prototype.Move = function(v)
@@ -334,6 +335,26 @@ GameObject.prototype.Killed = function()
 
 GameObject.prototype.Update = function(delta)
 {
+
+	this.spritesheet.Update(delta);
+
+}
+
+GameObject.prototype.Render = function(context)
+{
+
+	var data = this.spritesheet.Data();
+
+	if(!data)
+	{
+
+		Logger.LogError("Attempting to draw invalid spritesheet frame.");
+
+		return;
+
+	}
+
+	context.drawImage(this.image.Image(), data.box.X(), data.box.Y(), data.box.Width(), data.box.Height(), this.X() - data.offset.x, this.Y() - data.offset.y, data.box.Width(), data.box.Height());
 
 }
 
