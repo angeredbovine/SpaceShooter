@@ -71,7 +71,14 @@ DB.Prepare = function()
 
 					},
 					"spritesheet": "Test",
-					"image": "Plane.png"
+					"image": "Plane.png",
+					"scale":
+					{
+
+						"x": 0.25,
+						"y": 0.25
+
+					}
 
 				},
 				"actions":

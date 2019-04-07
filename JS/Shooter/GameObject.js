@@ -32,6 +32,7 @@ function GameObject(owner)
 
 	this.spritesheet = "";
 	this.image = "";
+	this.scale = new Vector2(1, 1);
 
 }
 
@@ -189,6 +190,13 @@ GameObject.prototype.Populate = function(json, proceed)
 
 	this.spritesheet = json.spritesheet;
 	this.image = json.image;
+
+	if(!(json.scale === undefined))
+	{
+
+		this.scale = new Vector2(json.scale.x, json.scale.y);
+
+	}
 
 	this.FinishPopulation(proceed);
 
@@ -354,7 +362,7 @@ GameObject.prototype.Render = function(context)
 
 	}
 
-	context.drawImage(this.image.Image(), data.box.X(), data.box.Y(), data.box.Width(), data.box.Height(), this.X() - data.offset.x, this.Y() - data.offset.y, data.box.Width(), data.box.Height());
+	context.drawImage(this.image.Image(), data.box.X(), data.box.Y(), data.box.Width(), data.box.Height(), this.X() - this.scale.X() * data.offset.x, this.Y() - this.scale.Y() * data.offset.y, this.scale.X() * data.box.Width(), this.scale.Y() * data.box.Height());
 
 }
 
