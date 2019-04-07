@@ -110,7 +110,7 @@ Shooter.prototype.Update = function(delta)
     this.UpdatePatterns(worldMovement, delta);
 
     //Read Spawn Messages
-	message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_SPAWN, true, 0);
+	var message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_SPAWN, true, 0);
     while(!message.IsEmpty())
     {
 
@@ -126,7 +126,7 @@ Shooter.prototype.Update = function(delta)
     }
 
 	//Read Pattern Messages
-	var message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_PATTERN, true, 0);
+	message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_PATTERN, true, 0);
 	while(!message.IsEmpty())
 	{
 

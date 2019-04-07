@@ -10,6 +10,7 @@
 		<script src="JS/Base/State.js"></script>
 		<script src="JS/Base/Messenger.js"></script>
 		<script src="JS/Base/FlagPole.js"></script>
+		<script src="JS/Base/SoundManager.js"></script>
 		<script src="JS/Base/GameLoop.js"></script>
 		<script src="JS/Base/Vector2.js"></script>
 		<script src="JS/Base/Timer.js"></script>
@@ -32,5 +33,3 @@
 		<script src="JS/Shooter/Stage.js"></script>
 		<script src="JS/Shooter/Shooter.js"></script>
 		<script src="JS/Shooter/Startup.js"></script>
-
-

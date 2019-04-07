@@ -37,6 +37,8 @@ function GameLoop(time, game)
 
 		GameLoop.delta -= CONST_FRAME_DURATION;
 
+		SoundManager.ProcessSoundMessages();
+
 		numUpdates++;
 		if(numUpdates >= CONST_PANIC)
 		{

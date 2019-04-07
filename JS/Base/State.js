@@ -38,6 +38,13 @@ State.prototype.Loaded = function()
 
 	}
 
+	if(!SoundManager.Loaded())
+	{
+
+		return false;
+
+	}
+
 	this.loadOrder = {};
 
 	this.Start();
