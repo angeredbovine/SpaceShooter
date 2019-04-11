@@ -75,6 +75,7 @@ Action.prototype.Fire = function()
 
 		this.lastFired = Timer.RunningMilliseconds();
 
+		//TODO: Make this play sound stored by the action
 		Messenger.PostMessage(new SoundEffectMessage("Effects/Shoot.wav"));
 
 	}

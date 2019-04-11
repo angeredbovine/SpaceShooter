@@ -27,12 +27,20 @@ document.addEventListener('DOMContentLoaded', function()
 
 	json.sounds = [];
 	json.sounds[0] = "Sounds/Effects/Shoot.wav";
+	json.sounds[1] = "Sounds/Music/Track1.mp3";
+	json.sounds[2] = "Sounds/Music/Track2.mp3";
 
 	game = new Shooter();
 	game.Initialize();
 	game.Load(json);
 
 	SoundManager.LoadSounds(json.sounds);
+
+	var tracks = [];
+	tracks[0] = "Music/Track1.mp3";
+	tracks[1] = "Music/Track2.mp3";
+
+	Messenger.PostMessage(new LinearMusicMessage(tracks, 5000));
 
 	ResizeCanvas();
 

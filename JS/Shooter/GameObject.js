@@ -356,7 +356,7 @@ GameObject.prototype.Render = function(context)
 	if(!data)
 	{
 
-		//Logger.LogError("Attempting to draw invalid spritesheet frame.");
+		Logger.LogError("Attempting to draw invalid spritesheet frame.");
 
 		return;
 

@@ -1,4 +1,5 @@
 const CONST_MESSAGE_TYPE_SOUNDEFFECT = "SoundEffect";
+const CONST_MESSAGE_TYPE_MUSIC = "Music";
 
 function SoundEffect()
 {
@@ -12,9 +13,7 @@ function SoundEffect()
 
 SoundEffect.prototype.Load = function(locator)
 {
-
     //TODO: May want to abstract this out so it can be different in different builds
-
     var caller = this;
 
     this.loaded = false;
@@ -60,7 +59,7 @@ SoundEffect.prototype.Loaded = function()
 
 }
 
-SoundEffect.prototype.Play = function()
+SoundEffect.prototype.Play = function(callback)
 {
 
     var source = SoundManager.context.createBufferSource();
@@ -68,6 +67,8 @@ SoundEffect.prototype.Play = function()
     source.connect(SoundManager.context.destination);
 
     source.start(0);
+
+    source.onended = callback;
 
 }
 
@@ -139,22 +140,45 @@ SoundManager.ProcessSoundMessages = function()
 
         var sound = message.Sound();
 
-        if(!(sound in SoundManager.buffers))
-        {
-
-            Logger.LogError("Attempting to play missing sound " + sound);
-
-        }
-        else
-        {
-
-            SoundManager.buffers[sound].Play();
-
-        }
+        SoundManager.PlaySound(sound);
 
         message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_SOUNDEFFECT, true, 0);
 
     }
+
+    message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_MUSIC, true, 0);
+    while(!message.IsEmpty())
+    {
+
+        SoundManager.music = message;
+        SoundManager.music.InitializeMusic();
+
+        message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_MUSIC, true, 0);
+
+    }
+
+    if(SoundManager.music)
+    {
+
+        SoundManager.music.UpdateTracks();
+
+    }
+
+}
+
+SoundManager.PlaySound = function(sound, callback)
+{
+
+    if(!(sound in SoundManager.buffers))
+    {
+
+        Logger.LogError("Attempting to play missing sound " + sound);
+
+        return;
+
+    }
+
+    SoundManager.buffers[sound].Play(callback);
 
 }
 
@@ -174,5 +198,91 @@ SoundEffectMessage.prototype.Sound = function()
 {
 
 	return this.sound;
+
+}
+
+function MusicMessage()
+{
+
+    Message.call(this, CONST_MESSAGE_TYPE_MUSIC);
+
+}
+
+MusicMessage.prototype = Object.create(Message.prototype);
+MusicMessage.prototype.constructor = MusicMessage;
+
+MusicMessage.prototype.InitializeMusic = function()
+{
+
+    Logger.LogError("Attempting to call InitializeMusic on virtual MusicMessage");
+
+}
+
+MusicMessage.prototype.UpdateTracks = function()
+{
+
+    Logger.LogError("Attempting to call UpdateTracks on virtual MusicMessage");
+
+}
+
+function LinearMusicMessage(tracks, delay)
+{
+
+    MusicMessage.call(this);
+
+    this.tracks = tracks.slice(0);
+
+    this.delay = delay;
+    this.startTime = -1;
+    this.playing = false;
+
+    this.currentTrack = 0;
+
+}
+
+LinearMusicMessage.prototype = Object.create(MusicMessage.prototype);
+LinearMusicMessage.prototype.constructor = LinearMusicMessage;
+
+LinearMusicMessage.prototype.InitializeMusic = function()
+{
+
+    this.PlayTrack();
+
+}
+
+LinearMusicMessage.prototype.PlayTrack = function()
+{
+
+    SoundManager.PlaySound(this.tracks[this.currentTrack], this.TrackComplete.bind(this));
+    this.playing = true;
+
+}
+
+LinearMusicMessage.prototype.UpdateTracks = function()
+{
+
+    if(!this.playing)
+    {
+
+        if(Timer.LifetimeMilliseconds() - this.startTime >= this.delay)
+        {
+
+            this.PlayTrack();
+
+        }
+
+    }
+
+}
+
+LinearMusicMessage.prototype.TrackComplete = function()
+{
+
+    this.currentTrack += 1;
+    this.currentTrack = (this.currentTrack % this.tracks.length);
+
+    this.startTime = Timer.LifetimeMilliseconds();
+
+    this.playing = false;
 
 }
