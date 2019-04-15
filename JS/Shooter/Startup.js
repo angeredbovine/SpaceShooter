@@ -1,7 +1,3 @@
-var game = {};
-var game_running = false;
-var load_order_done = false;
-
 document.addEventListener('DOMContentLoaded', function()
 {
 
@@ -45,37 +41,3 @@ document.addEventListener('DOMContentLoaded', function()
 	ResizeCanvas();
 
 });
-
-function Prepped()
-{
-
-	load_order_done = true;
-
-}
-
-function GameLoaded()
-{
-
-	if(load_order_done && game.Loaded() && !game_running && SoundManager.Loaded())
-	{
-
-		GameLoop(0, game);
-		game_running = true;
-
-	}
-
-}
-
-function ResizeCanvas()
-{
-
-	game.Resize(window.innerWidth, window.innerHeight);
-
-}
-
-window.addEventListener('resize', function()
-{
-
-	ResizeCanvas();
-
-}, true);

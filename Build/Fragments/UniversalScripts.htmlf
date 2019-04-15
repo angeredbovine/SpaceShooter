@@ -8,6 +8,7 @@
 		<script src="JS/Base/ImageResource.js"></script>
 		<script src="JS/Base/Spritesheet.js"></script>
 		<script src="JS/Base/State.js"></script>
+		<script src="JS/Base/LoadingScreen.js"></script>
 		<script src="JS/Base/Messenger.js"></script>
 		<script src="JS/Base/FlagPole.js"></script>
 		<script src="JS/Base/SoundManager.js"></script>

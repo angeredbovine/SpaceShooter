@@ -5,6 +5,10 @@ function State()
 
 	this.loadOrder = {};
 
+	this.canvas = null;
+	this.container = null;
+	this.context = null;
+
 }
 
 State.prototype.Running = function(r)
@@ -53,10 +57,25 @@ State.prototype.Loaded = function()
 
 }
 
+State.prototype.LoadProgress = function()
+{
+
+	var progress = {];
+	progress.total = 0;
+	progress.loaded = 0;
+
+	//TODO: Count loaded/total objects
+	
+	return progress;
+
+}
+
 State.prototype.Initialize = function(json)
 {
 
-	Logger.LogError("Attempting to call virtual State::Initialize method.");
+	this.canvas = document.getElementById(CONST_CANVAS_ID);
+	this.container = document.getElementById(CONST_CONTAINER_ID);
+	this.context = this.canvas.getContext('2d');
 
 }
 

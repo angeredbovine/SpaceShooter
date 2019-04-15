@@ -70,4 +70,32 @@ GameLoop.Reset = function()
 
 }
 
+GameLoop.Pause = function()
+{
+
+	Timer.Pause();
+
+	if(GameLoop.initialized)
+	{
+
+		GameLoop.game.Pause();
+
+	}
+
+}
+
+GameLoop.Unpause = function()
+{
+
+	if(GameLoop.initialized && GameLoop.game.UnpauseCondition())
+	{
+
+		Timer.Unpause();
+
+		GameLoop.game.Unpause();
+
+	}
+
+}
+
 GameLoop.Reset();
