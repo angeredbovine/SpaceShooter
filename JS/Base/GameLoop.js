@@ -6,7 +6,7 @@ var CONST_PANIC = 10;
 function GameLoop(time, game)
 {
 
-	if(!GameLoop.initialized)
+	if(!GameLoop.initialized || time < 0)
 	{
 
 		GameLoop.initialized = true;

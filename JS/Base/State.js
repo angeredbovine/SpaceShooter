@@ -4,6 +4,7 @@ function State()
 	this.running = false;
 
 	this.loadOrder = {};
+	this.loaded_count = 0;
 
 	this.canvas = null;
 	this.container = null;
@@ -30,6 +31,7 @@ State.prototype.Running = function(r)
 State.prototype.Loaded = function()
 {
 
+	this.loaded_count = 0;
 	for(var loaded in this.loadOrder)
 	{
 
@@ -39,6 +41,8 @@ State.prototype.Loaded = function()
 			return false;
 
 		}
+
+		this.loaded_count += 1;
 
 	}
 
@@ -60,12 +64,14 @@ State.prototype.Loaded = function()
 State.prototype.LoadProgress = function()
 {
 
-	var progress = {];
-	progress.total = 0;
-	progress.loaded = 0;
+	var progress = {};
+	progress.total = Object.getOwnPropertyNames(this.loadOrder).length;
+	progress.loaded = this.loaded_count;
 
-	//TODO: Count loaded/total objects
-	
+	var soundProgress = SoundManager.LoadProgress();
+	progress.total += soundProgress.total;
+	progress.loaded == soundProgress.loaded;
+
 	return progress;
 
 }

@@ -15,10 +15,12 @@ function GameLoaded()
 	if(load_order_done && m_loadState.nextState.Loaded() && !game_running && SoundManager.Loaded())
 	{
 
-		GameLoop(0, m_loadState.nextState);
+		GameLoop(-1, m_loadState.nextState);
 		game_running = true;
 
 		m_loadState = m_loadState.nextState;
+
+		ResizeCanvas();
 
 	}
 
@@ -69,7 +71,7 @@ LoadingScreen.prototype.Loaded = function()
 	}
 
 	this.loadOrder = {};
-	
+
 	this.Start();
 
 	return true;
@@ -78,6 +80,8 @@ LoadingScreen.prototype.Loaded = function()
 
 LoadingScreen.prototype.Initialize = function(json)
 {
+
+	State.prototype.Initialize.call(this);
 
 	this.nextState.Initialize(json.next);
 
@@ -99,7 +103,7 @@ LoadingScreen.prototype.Start = function()
 LoadingScreen.prototype.Update = function(delta)
 {
 
-	if(load_order_done)
+	if(this.Loaded() && load_order_done && !this.nextState.Loaded())
 	{
 
 		var progress = this.nextState.LoadProgress();
@@ -118,15 +122,22 @@ LoadingScreen.prototype.Update = function(delta)
 LoadingScreen.prototype.Render = function(delta)
 {
 
-	//TODO: Use Assets
-	this.context.save();
-	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+	if(this.Loaded())
+	{
 
-	var box = new Box(75, (this.container.style.height / 2) - 35, this.container.style.width - 150, 70);
-	var bar = new Box(100, (this.container.style.height / 2) - 25, (this.container.style.width - 200) * this.progress, 50);
+		//TODO: Use Assets
+		this.context.save();
+		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-	box.Render(this.context, "#FFFFFF", 0, "#000000");
-	bar.Render(this.context, "#00FF00", 0, "#000000");
+		var box = new Box(75, (this.canvas.height / 2) - 35, (this.canvas.width - 150), 70);
+		var bar = new Box(100, (this.canvas.height / 2) - 25, (this.canvas.width - 200) * this.progress, 50);
+
+		box.Render(this.context, "rgba(255, 255, 255, 1)");
+		bar.Render(this.context, "rgba(0, 255, 0, 1)");
+
+		this.context.restore();
+
+	}
 
 }
 
@@ -147,4 +158,11 @@ LoadingScreen.prototype.UnpauseCondition = function()
 
 LoadingScreen.prototype.Resize = function(width, height)
 {
+
+	this.container.style.width = width + "px";
+	this.container.style.height = height + "px";
+
+	this.canvas.width = width;
+	this.canvas.height = height;
+
 }

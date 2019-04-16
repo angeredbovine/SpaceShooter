@@ -115,6 +115,7 @@ SoundManager.LoadSounds = function(json)
 SoundManager.Loaded = function()
 {
 
+    SoundManager.loaded_count = 0;
     for(var sound in SoundManager.buffers)
     {
 
@@ -124,10 +125,22 @@ SoundManager.Loaded = function()
             return false;
 
         }
+        SoundManager.loaded_count += 1;
 
     }
 
     return true;
+
+}
+
+SoundManager.LoadProgress = function()
+{
+
+    var progress = {};
+    progress.total = Object.getOwnPropertyNames(SoundManager.buffers).length;
+    progress.loaded = SoundManager.loaded_count;
+
+    return progress;
 
 }
 

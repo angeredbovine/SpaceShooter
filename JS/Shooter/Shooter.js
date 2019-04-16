@@ -335,6 +335,6 @@ Shooter.prototype.Resize = function(width, height)
 
         this.container.style.width = newWidth + "px";
         this.container.style.height = newHeight + "px";
-        this.container.style.padding = (height - newHeight) / 2 + "px " + (width - newWidth) / 2+ "px";
+        this.container.style.padding = (height - newHeight) / 2 + "px " + (width - newWidth) / 2 + "px";
 
 }
