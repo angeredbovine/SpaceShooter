@@ -316,6 +316,7 @@ Polygon.prototype.Render = function(context, fillColor, width, borderColor)
 	{
 
 		vector = Vector2.Sum(this.Position(), this.vertices[i]);
+		context.lineTo(vector.X(), vecctor.Y());
 
 	}
 	context.closePath();
