@@ -44,7 +44,7 @@ DB.Prepare = function()
 							"type": "Circle",
 							"x": 0,
 							"y": 0,
-							"radius": 10
+							"radius": 25
 
 						}
 
@@ -73,8 +73,8 @@ DB.Prepare = function()
 					"scale":
 					{
 
-						"x": 0.25,
-						"y": 0.25
+						"x": 0.2,
+						"y": 0.2
 
 					}
 
@@ -287,7 +287,7 @@ DB.Prepare = function()
 							"type": "Circle",
 							"x": 0,
 							"y": 0,
-							"radius": 3
+							"radius": 5
 
 						}
 
@@ -347,7 +347,7 @@ DB.Prepare = function()
 							"type": "Circle",
 							"x": 0,
 							"y": 0,
-							"radius": 5
+							"radius": 20
 
 						}
 
@@ -421,7 +421,49 @@ DB.Prepare = function()
                 "y": 512
 
             },
-            "duration": 1000
+            "duration": 20
+
+        },
+        {
+
+            "box":
+            {
+
+                "x": 1024,
+                "y": 0,
+                "width": 1024,
+                "height": 1024
+
+            },
+            "offset":
+            {
+
+                "x": 512,
+                "y": 512
+
+            },
+            "duration": 20
+
+        },
+        {
+
+            "box":
+            {
+
+                "x": 2048,
+                "y": 0,
+                "width": 1024,
+                "height": 1024
+
+            },
+            "offset":
+            {
+
+                "x": 512,
+                "y": 512
+
+            },
+            "duration": 20
 
         }
 
@@ -431,7 +473,9 @@ DB.Prepare = function()
 
         [
 
-            0
+            0,
+            1,
+            2
 
         ]
 

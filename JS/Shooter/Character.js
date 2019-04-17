@@ -33,7 +33,7 @@ Character.prototype.Update = function(delta)
 	if(!this.spritesheet.Playing())
 	{
 
-		this.spritesheet.Promise(0, 0, true);
+		this.spritesheet.Promise(0, CONST_SPRITESHEET_EMPTY, true);
 
 	}
 

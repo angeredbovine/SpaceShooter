@@ -1,4 +1,5 @@
 const CONST_SPRITESHEET_EMPTY = -1;
+const CONST_SPRITESHEET_REPLAY = -2;
 
 function FrameData(x, y, w, h, oX, oY, duration)
 {
@@ -71,7 +72,7 @@ Spritesheet.prototype.Play = function(animation, loop, start)
 
 		}
 
-		return (frame >= this.animations[animation].length ? ((loop ? 0 : CONST_SPRITESHEET_EMPTY)) : frame);
+		return (frame >= this.animations[animation].length ? ((loop ? CONST_SPRITESHEET_REPLAY : CONST_SPRITESHEET_EMPTY)) : frame);
 
 	}
 
@@ -126,6 +127,7 @@ SheetReference.prototype.Promise = function(current, next, loop)
 	this.loop = loop;
 
 	this.Start();
+	this.Lookup();
 
 }
 
@@ -133,8 +135,7 @@ SheetReference.prototype.Start = function()
 {
 
 	this.startTime = Timer.RunningMilliseconds();
-
-	this.Lookup();
+	this.currentFrame = 0;
 
 }
 
@@ -142,6 +143,13 @@ SheetReference.prototype.Lookup = function()
 {
 
 	this.currentFrame = this.sheet.Play(this.currentAnimation, (this.nextAnimation != CONST_SPRITESHEET_EMPTY ? false : this.loop), this.startTime);
+
+	if(this.currentFrame == CONST_SPRITESHEET_REPLAY)
+	{
+
+		this.Start();
+
+	}
 
 }
 
