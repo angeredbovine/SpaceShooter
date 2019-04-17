@@ -303,3 +303,33 @@ Polygon.prototype.Type = function()
 	return CONST_SHAPE_POLYGON;
 
 }
+
+Polygon.prototype.Render = function(context, fillColor, width, borderColor)
+{
+
+	var vector = Vector2.Sum(this.Position(), this.vertices[0]);
+
+	context.beginPath();
+
+	context.moveTo(vector.X(), vector.Y());
+	for(var i = 0; i < this.vertices.length; i++)
+	{
+
+		vector = Vector2.Sum(this.Position(), this.vertices[i]);
+
+	}
+	context.closePath();
+
+	context.fillStyle = fillColor;
+	context.fill();
+
+	if(typeof width && typeof borderColor)
+	{
+
+	        context.lineWidth = width;
+        	context.strokeStyle = borderColor;
+		context.stroke();
+
+	}
+
+}
