@@ -135,14 +135,6 @@ LoadingScreen.prototype.Render = function(delta)
 		box.Render(this.context, "rgba(255, 255, 255, 1)");
 		bar.Render(this.context, "rgba(0, 255, 0, 1)");
 
-		var vertices = [];
-		vertices[0] = new Vector2(0, 50);
-		vertices[1] = new Vector2(50, -50);
-		vertices[2] = new Vector2(-50, -50);
-
-		var polygon = new Polygon(200, 200, vertices);
-		polygon.Render(this.context, "rgba(255, 0, 0, 1)", 3, "rgba(255, 255, 255, 1)");
-
 		this.context.restore();
 
 	}

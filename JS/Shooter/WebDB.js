@@ -421,7 +421,7 @@ DB.Prepare = function()
                 "y": 512
 
             },
-            "duration": 20
+            "duration": 50
 
         },
         {
@@ -442,7 +442,7 @@ DB.Prepare = function()
                 "y": 512
 
             },
-            "duration": 20
+            "duration": 50
 
         },
         {
@@ -463,7 +463,7 @@ DB.Prepare = function()
                 "y": 512
 
             },
-            "duration": 20
+            "duration": 50
 
         }
 

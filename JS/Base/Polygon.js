@@ -316,7 +316,7 @@ Polygon.prototype.Render = function(context, fillColor, width, borderColor)
 	{
 
 		vector = Vector2.Sum(this.Position(), this.vertices[i]);
-		context.lineTo(vector.X(), vecctor.Y());
+		context.lineTo(vector.X(), vector.Y());
 
 	}
 	context.closePath();
@@ -327,8 +327,8 @@ Polygon.prototype.Render = function(context, fillColor, width, borderColor)
 	if(typeof width && typeof borderColor)
 	{
 
-	        context.lineWidth = width;
-        	context.strokeStyle = borderColor;
+		context.lineWidth = width;
+        context.strokeStyle = borderColor;
 		context.stroke();
 
 	}
