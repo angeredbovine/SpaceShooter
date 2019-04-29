@@ -1,6 +1,7 @@
 node_modules/
 Electron/
 Cordova/
+JS/Base/
 WebIndex.html
 PCIndex.html
 MobileIndex.html
