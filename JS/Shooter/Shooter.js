@@ -59,24 +59,6 @@ Shooter.prototype.Load = function(json)
 
 }
 
-Shooter.prototype.LoadMaster = function(master_name, json, factoryFunction)
-{
-
-	for(var i = 0; i < json.length; i++)
-	{
-
-		var locator = json[i];
-		json[i] = Helpers.TrimLocator(locator);
-
-		this[master_name][json[i]] = factoryFunction(i, this);
-		this[master_name][json[i]].Load(locator);
-
-		this.loadOrder[json[i]] = this[master_name][json[i]];
-
-	}
-
-}
-
 Shooter.prototype.Start = function()
 {
 
