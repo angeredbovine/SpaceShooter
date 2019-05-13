@@ -1,0 +1,2 @@
+cd ../Base/
+./Deploy.sh

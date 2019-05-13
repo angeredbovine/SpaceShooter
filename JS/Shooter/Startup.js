@@ -27,6 +27,22 @@ document.addEventListener('DOMContentLoaded', function()
 	json.sounds[1] = "Sounds/Music/Track1.mp3";
 	json.sounds[2] = "Sounds/Music/Track2.mp3";
 
+	json.images = [];
+	json.images[0] = "Plane.png";
+
+	json.sheets = [];
+	json.sheets[0] = "Sheets/Test";
+
+	json.sheet_references = [];
+	json.sheet_references[0] = {};
+	json.sheet_references[0].reference = "Test";
+	json.sheet_references[0].image = "Plane.png";
+	json.sheet_references[0].x = 960;
+	json.sheet_references[0].y = 300;
+	json.sheet_references[0].scale = {x: 0.1, y: 0.1};
+	json.sheet_references[0].offset = {x: 0, y: 0};
+	json.sheet_references[0].frame = 0;
+
 	var loading = new LoadingScreen(new Shooter());
 	loading.Initialize(json);
 	loading.Load(json);

@@ -20,5 +20,9 @@ esac
 if [ $ABBREVIATION = "" ]; then
 	echo "Please specify a build platform."
 else
-	cat ${DIRECTORY}UniversalHeader.htmlf ${DIRECTORY}UniversalScripts.htmlf ${DIRECTORY}${ABBREVIATION}Scripts.htmlf ${DIRECTORY}UniversalBody.htmlf > ${OUTPUT_DIRECTORY}${ABBREVIATION}Index.html
+	cat ${DIRECTORY}UniversalHeader.htmlf \
+        ${DIRECTORY}UniversalScripts.htmlf \
+        ${DIRECTORY}${ABBREVIATION}Scripts.htmlf \
+        ${DIRECTORY}UniversalBody.htmlf \
+        > ${OUTPUT_DIRECTORY}${ABBREVIATION}Index.html
 fi
