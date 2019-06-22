@@ -62,7 +62,7 @@ ImageMessage.prototype.Process = function(source)
 function Startup()
 {
 
-	electronWindow = new electron.BrowserWindow({width: 1600, height: 600});
+	electronWindow = new electron.BrowserWindow({width: 1600, height: 600,  webPreferences: { nodeIntegration: true }});
 	electronWindow.loadFile('index.html');
 
 	electronWindow.webContents.openDevTools();

@@ -1,1 +1,1 @@
-const CONST_GAME_NAME = "WebGame";
+const CONST_APP_NAME = "SpaceShooter";
