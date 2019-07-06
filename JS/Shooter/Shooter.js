@@ -62,14 +62,14 @@ Shooter.prototype.Load = function(json)
 Shooter.prototype.Start = function()
 {
 
-	this.player.LinkActions(PLAYER_ID);
+        this.player.LinkActions(PLAYER_ID);
 
 	this.stage.Start();
 
-    this.player.Hook();
+        this.player.Hook();
 
-    this.canvas.width = this.stage.PlayerArea().Width();
-    this.canvas.height = this.stage.PlayerArea().Height();
+        this.canvas.width = this.stage.PlayerArea().Width();
+        this.canvas.height = this.stage.PlayerArea().Height();
 
 }
 
@@ -85,25 +85,25 @@ Shooter.prototype.Update = function(delta)
 
 	var worldMovement = this.stage.Move(delta);
 
-    this.UpdateObjects(worldMovement, delta);
+        this.UpdateObjects(worldMovement, delta);
 
-    this.UpdatePatterns(worldMovement, delta);
+        this.UpdatePatterns(worldMovement, delta);
 
-    //Read Spawn Messages
+        //Read Spawn Messages
 	var message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_SPAWN, true, 0);
-    while(!message.IsEmpty())
-    {
+        while(!message.IsEmpty())
+        {
 
-        var actor = this.actor_master[message.Actor()].Clone(message.Position());
+                var actor = this.actor_master[message.Actor()].Clone(message.Position());
 
-    	var id = Helpers.GenerateID(message.Actor());
+                var id = Helpers.GenerateID(message.Actor());
 
-    	this.objects[id] = actor;
-        this.objects[id].LinkActions(id);
+                this.objects[id] = actor;
+                this.objects[id].LinkActions(id);
 
-        message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_SPAWN, true, 0);
+                message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_SPAWN, true, 0);
 
-    }
+        }
 
 	//Read Pattern Messages
 	message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_PATTERN, true, 0);
@@ -120,7 +120,7 @@ Shooter.prototype.Update = function(delta)
 
 	}
 
-    this.stage.Update(this.player, delta);
+        this.stage.Update(this.player, delta);
 
 	//Read Killed Messages
 	var message = Messenger.ReadMessage(CONST_MESSAGE_TYPE_KILLED, true, 0);
