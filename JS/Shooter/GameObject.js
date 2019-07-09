@@ -362,7 +362,7 @@ GameObject.prototype.Render = function(context)
 
 	}
 
-	context.drawImage(this.image.Image(), data.box.X(), data.box.Y(), data.box.Width(), data.box.Height(), this.X() - this.scale.X() * data.offset.x, this.Y() - this.scale.Y() * data.offset.y, this.scale.X() * data.box.Width(), this.scale.Y() * data.box.Height());
+	Helpers.DrawImage(context, this.image.Image(), data.box.X(), data.box.Y(), data.box.Width(), data.box.Height(), this.X() - this.scale.X() * data.offset.x, this.Y() - this.scale.Y() * data.offset.y, this.scale.X() * data.box.Width(), this.scale.Y() * data.box.Height());
 
 }
 

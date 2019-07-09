@@ -180,29 +180,29 @@ Shooter.prototype.UpdatePatterns = function(movement, delta)
 	for(pattern in this.patterns)
 	{
 
-		this.patterns[pattern].WorldMove(movement);
+                this.patterns[pattern].WorldMove(movement);
 		this.patterns[pattern].Update(delta);
 
-        for(target in this.objects)
-    	{
+                for(target in this.objects)
+    	        {
 
-			if(this.patterns[pattern].Hit(this.objects[target]))
-            {
+                        if(this.patterns[pattern].Hit(this.objects[target]))
+                        {
 
-                this.objects[target].Hurt(this.patterns[pattern]);
+                                this.objects[target].Hurt(this.patterns[pattern]);
 
-            }
+                        }
 
-    	}
+    	           }
 
-        if(this.patterns[pattern].ShouldRemove())
-        {
+                   if(this.patterns[pattern].ShouldRemove())
+                   {
 
-            delete this.patterns[pattern];
+                           delete this.patterns[pattern];
 
-            Logger.LogInfo("Deleted Pattern " + pattern);
+                           Logger.LogInfo("Deleted Pattern " + pattern);
 
-    	}
+    	              }
 
 	}
 
@@ -211,7 +211,6 @@ Shooter.prototype.UpdatePatterns = function(movement, delta)
 Shooter.prototype.Render = function(delta)
 {
 
-	this.context.save();
 	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 	var world = this.stage.World();
@@ -222,7 +221,7 @@ Shooter.prototype.Render = function(delta)
 	for(var obj in this.objects)
 	{
 
-        this.objects[obj].Render(this.context);
+                this.objects[obj].Render(this.context);
 		this.objects[obj].DebugRender(this.context);
 
 	}
@@ -234,7 +233,7 @@ Shooter.prototype.Render = function(delta)
 
 	}
 
-	this.context.restore();
+	this.context.translate(world.X(), world.Y());
 
 }
 
