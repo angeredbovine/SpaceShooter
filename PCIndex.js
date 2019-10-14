@@ -83,11 +83,23 @@ function Startup()
 
 	});
 
-	ipc.on(channels.ImageSendChannel, function(event, args))
+	ipc.on(channels.ImageSendChannel, function(event, args)
 	{
 
 		var message = new ImageMessage(event.sender, args);
 		message.Process("DB/Images/" + args);
+
+	});
+
+	ipc.on(channels.SettingsSendChannel, function(event, args)
+	{
+
+		fileSystem.readFile("settings.json", function(source)
+		{
+
+			event.sender.send(SettingsReceiveChannel, args);
+
+		});
 
 	});
 
