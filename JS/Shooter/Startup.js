@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function()
 
 	DB.Prepare();
 	SoundManager.Initialize();
+	Settings.Load();
 
 	var json = {};
 	json.next = {};

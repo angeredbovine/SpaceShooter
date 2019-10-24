@@ -16,6 +16,7 @@
 		<script src="JS/Base/Vector2.js"></script>
 		<script src="JS/Base/Timer.js"></script>
 		<script src="JS/Base/Input.js"></script>
+		<script src="JS/Base/Settings.js"></script>
 		<script src="JS/Base/Shape.js"></script>
 		<script src="JS/Base/Circle.js"></script>
 		<script src="JS/Base/Box.js"></script>

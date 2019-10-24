@@ -62,14 +62,14 @@ Shooter.prototype.Load = function(json)
 Shooter.prototype.Start = function()
 {
 
-        this.player.LinkActions(PLAYER_ID);
+    this.player.LinkActions(PLAYER_ID);
 
-	this.stage.Start();
+    this.stage.Start();
 
-        this.player.Hook();
+    this.player.Hook();
 
-        this.canvas.width = this.stage.PlayerArea().Width();
-        this.canvas.height = this.stage.PlayerArea().Height();
+    this.canvas.width = this.stage.PlayerArea().Width();
+    this.canvas.height = this.stage.PlayerArea().Height();
 
 }
 

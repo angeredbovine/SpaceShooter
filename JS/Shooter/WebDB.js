@@ -15,6 +15,8 @@ function DB()
 
 }
 
+const CONST_SETTINGS_STORAGE_KEY = "STORAGE-SETTINGS";
+
 DB.Prepare = function()
 {
 
@@ -484,6 +486,22 @@ DB.Prepare = function()
 }
 
 	};
+
+}
+
+DB.LoadSettings = function()
+{
+
+	var settings = JSON.parse(localStorage.getItem(CONST_SETTINGS_STORAGE_KEY));
+
+	Settings.Populate(settings);
+
+}
+
+DB.SaveSettings = function()
+{
+
+	localStorage.setItem(CONST_SETTINGS_STORAGE_KEY, JSON.stringify(Settings.Full()));
 
 }
 
